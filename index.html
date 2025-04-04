@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Congratulations!</title>
+  <link rel="stylesheet" href="./style/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    #video-container {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    #congrats-video {
+      max-width: 80%;
+      height: auto;
+      border: 2px solid #ff477e;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="first-page" class="screen">
+    <h1 id="congratulations-text">🎉 Congratulations! You've won a gift card! 🎉</h1>
+    <a href="giftcard.html" id="continue-button">Click Here to Continue</a>
+    <div id="video-container">
+      <video id="congrats-video" controls autoplay muted loop>
+        <source src="./audio/tomandjerry.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+
+  <script>
+    // Function to launch confetti
+    function launchConfetti() {
+      confetti({
+        particleCount: 300, // Number of particles
+        spread: 160, // Spread of the particles
+        startVelocity: 30, // Slow down confetti speed
+        origin: { y: 0.6 }, // Start position of confetti
+        colors: ['#ff0a54', '#ff477e', '#ff7096', '#ff85a1', '#fbb1bd'], // Custom colors
+      });
+    }
+
+    // Fire confetti every 2 seconds indefinitely
+    setInterval(() => {
+      launchConfetti();
+    }, 2000); // Confetti launches every 2 seconds
+  </script>
+</body>
+</html>

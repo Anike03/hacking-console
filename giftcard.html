@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lucky Lottery Club</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    /* Custom CSS */
+    body {
+      position: relative;
+      min-height: 100vh;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .countdown-timer {
+      font-size: 1.5rem;
+      padding: 1rem;
+      border-radius: 10px;
+      animation: pulse 1s infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.05); }
+    }
+
+    .gift-card-btn {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .gift-card-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .img-container {
+      width: 100%;
+      height: 200px; /* Fixed height for all images */
+      overflow: hidden; /* Ensure images don't overflow the container */
+      border-radius: 10px;
+      border: 3px solid transparent;
+      transition: border-color 0.3s ease;
+    }
+
+    .img-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Ensure images fill the container without distortion */
+    }
+
+    .img-container:hover {
+      border-color: #ffc107;
+    }
+  </style>
+</head>
+<body class="bg-light">
+
+  <!-- Canvas for Background Animation -->
+  <canvas id="backgroundCanvas"></canvas>
+
+  <div class="container text-center">
+    <h1 class="display-4 text-primary fw-bold">Lucky Lottery Club</h1>
+    <p class="lead">Select a gift card to claim your prize before time runs out!</p>
+    
+    <div id="main-screen" class="screen mt-4">
+      <div class="countdown-timer alert alert-danger fw-bold" id="countdown">
+        Time Left: 02:00
+      </div>
+      <ul class="list-unstyled row justify-content-center">
+          <li class="col-md-4 col-sm-6 mb-4">
+              <a href="amzgc.html" target="_blank">
+                <div class="img-container">
+                  <img src="./images/amazon-gift-card-1000-try-66576.jpg" alt="Amazon Gift Card" class="rounded shadow">
+                </div>
+                <button class="gift-card-btn btn btn-warning w-100 mt-2" data-card="Amazon">Amazon Gift Card</button>
+              </a>
+          </li>
+          <li class="col-md-4 col-sm-6 mb-4">
+              <a href="wmtgc.html" target="_blank">
+                <div class="img-container">
+                  <img src="./images/wmmc.jpg" alt="Walmart Gift Card" class="rounded shadow">
+                </div>
+                <button class="gift-card-btn btn btn-primary w-100 mt-2" data-card="Walmart">Walmart Gift Card</button>
+              </a>
+          </li>
+          <li class="col-md-4 col-sm-6 mb-4">
+              <a href="stbgc.html" target="_blank">
+                <div class="img-container">
+                  <img src="./images/starbucks.jpeg" alt="Starbucks Gift Card" class="rounded shadow">
+                </div>
+                <button class="gift-card-btn btn btn-success w-100 mt-2" data-card="Starbucks">Starbucks Gift Card</button>
+              </a>
+          </li>
+          <li class="col-md-4 col-sm-6 mb-4">
+              <a href="itunes.html" target="_blank">
+                <div class="img-container">
+                  <img src="./images/itunes-1000-hk-card-865.jpeg" alt="Apple Gift Card" class="rounded shadow">
+                </div>
+                <button class="gift-card-btn btn btn-danger w-100 mt-2" data-card="Apple iTunes">iTunes Gift Card</button>
+              </a>
+          </li>
+          <li class="col-md-4 col-sm-6 mb-4">
+              <a href="nfgc.html" target="_blank">
+                <div class="img-container">
+                  <img src="./images/no-frills.webp" alt="No Frills" class="rounded shadow">
+                </div>
+                <button class="gift-card-btn btn btn-dark w-100 mt-2" data-card="No Frills">No Frills Gift Card</button>
+              </a>
+          </li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    // Countdown Timer Logic
+    const countdownElement = document.getElementById('countdown');
+    let timeRemaining = 2 * 60; // 2 minutes in seconds
+
+    const clockTickSound = new Audio('./audio/clock-ticking-60-second-countdown-118231.mp3'); 
+    clockTickSound.loop = true;
+
+    function updateCountdown() {
+      const minutes = Math.floor(timeRemaining / 60);
+      const seconds = timeRemaining % 60;
+      countdownElement.textContent = `Time Left: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+      if (timeRemaining > 0) {
+        timeRemaining--;
+      } else {
+        clockTickSound.pause();
+        alert("Time is up! You can no longer claim a gift card.");
+        document.querySelectorAll('.gift-card-btn').forEach(button => button.disabled = true);
+      }
+    }
+
+    window.onload = function() {
+      clockTickSound.play().catch(error => console.error("Audio playback failed:", error));
+      setInterval(updateCountdown, 1000);
+    };
+
+    document.querySelectorAll('.gift-card-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        clockTickSound.pause();
+        clockTickSound.currentTime = 0;
+      });
+    });
+
+    // Canvas Background Animation
+    const canvas = document.getElementById('backgroundCanvas');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function createStar() {
+      return {
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 2,
+        speed: Math.random() * 0.5 + 0.1,
+        opacity: Math.random(),
+      };
+    }
+
+    const stars = Array.from({ length: 100 }, createStar);
+
+    function drawStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#000';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      stars.forEach(star => {
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+        ctx.fill();
+        star.y += star.speed;
+        if (star.y > canvas.height) {
+          Object.assign(star, createStar());
+          star.y = 0;
+        }
+      });
+
+      requestAnimationFrame(drawStars);
+    }
+
+    drawStars();
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

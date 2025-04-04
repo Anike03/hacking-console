@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amazon Gift Card</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style/style02.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <nav class="navbar navbar-dark">
+      <a class="navbar-brand" href="#">
+        <img src="https://www.amazon.com/favicon.ico" alt="Amazon Logo" />
+        Amazon.ca
+       
+      </a>
+    </nav>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <div class="container">
+        <input type="text" placeholder="Search for products..." />
+        <button>Search</button>
+      </div>
+    </div>
+
+    <!-- Product Grid and Form -->
+    <div class="container">
+      <h2 class="mt-4">Amazon Gift Cards</h2>
+      <div class="row">
+        <!-- Product Grid -->
+        <div class="col-md-8">
+          <div class="product-grid">
+            <div class="product-card">
+              <img src="./images/1000.png" alt="Amazon Gift Card" />
+              <h3>Amazon Gift Card - $1000</h3>
+              <p>Redeemable on millions of items at Amazon.</p>
+              <button class="btn btn-warning claim-btn">Claim Now</button>
+            </div>
+            <div class="product-card">
+              <img src="./images/500.webp" alt="Amazon Gift Card" />
+              <h3>Amazon Gift Card - $500</h3>
+              <p>Perfect for your favorite Amazon products.</p>
+              <button class="btn btn-warning claim-btn">Claim Now</button>
+            </div>
+            <div class="product-card">
+              <img src="./images/250.jpg" alt="Amazon Gift Card" />
+              <h3>Amazon Gift Card - $250</h3>
+              <p>Great for small purchases or gifts.</p>
+              <button class="btn btn-warning claim-btn">Claim Now</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form and Console Container -->
+        <div class="col-md-4">
+          <div id="form-screen" class="form-container hidden">
+            <!-- Form hidden by default -->
+            <h2 class="form-heading">Claim Your Gift Card</h2>
+            <form id="gift-card-form">
+              <div class="form-group">
+                <label for="name">Full Name:</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  placeholder="Enter your full name"
+                />
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address:</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  placeholder="Enter your email address"
+                />
+              </div>
+              <div class="form-group">
+                <label for="gift-card">Select Gift Card:</label>
+                <select id="gift-card" name="gift-card" required>
+                  <option value="" disabled selected>Select a gift card</option>
+                  <option value="Amazon $100">Amazon Gift Card - $1000</option>
+                  <option value="Amazon $50">Amazon Gift Card - $500</option>
+                  <option value="Amazon $25">Amazon Gift Card - $250</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="address">Shipping Address:</label>
+                <textarea
+                  id="address"
+                  name="address"
+                  required
+                  placeholder="Enter your shipping address"
+                  rows="4"
+                ></textarea>
+              </div>
+              <button type="submit" class="submit-btn">Submit</button>
+            </form>
+          </div>
+
+          <!-- Hacking Console -->
+          <div id="console">
+            <div id="code"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Access Denied Message -->
+    <div id="accessDenied">ACCESS DENIED</div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>&copy; 2023 Amazon. All rights reserved.</p>
+    </div>
+
+    <!-- Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- External Script -->
+    <script src="script/script.js"></script>
+  </body>
+</html>

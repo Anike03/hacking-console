@@ -1,0 +1,185 @@
+/* General body styling */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    color: #333;
+    text-align: center;
+  }
+  
+  .screen {
+    padding: 20px;
+    
+  }
+  
+  #congratulations-text {
+    font-size: 2rem;
+    animation: zoomInOut 2s infinite;
+    color: #4CAF50;
+    margin: 30px 0;
+  }
+  
+  @keyframes zoomInOut {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  #continue-button {
+    display: inline-block; /* Ensure it's a block-level element */
+    margin-top: 20px;
+    padding: 15px 30px;
+    font-size: 16px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    animation: shake 1s infinite; /* Add the shaking animation */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  @keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+  }
+  
+  #continue-button:hover {
+    background-color: #fc1e0e;
+    transform: scale(1.05); /* Make button grow slightly when hovered */
+  }
+
+
+
+
+  /* Global Styles */
+  
+  h1 {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 2rem;
+    color: #333;
+  }
+  
+  /* Main Screen Container */
+  #main-screen {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .gift-card-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 20px;
+    padding: 0;
+    list-style-type: none;
+  }
+  
+  .gift-card-list li {
+    margin: 10px;
+    text-align: center;
+    max-width: 200px;
+    width: 100%;
+  }
+  
+  .gift-card-list img {
+    width: 100%;
+    height: 150px;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    animation: dance 1s infinite; /* Add dancing animation */
+  }
+  
+  /* Keyframes for dancing effect */
+  @keyframes dance {
+    0% {
+      transform: translateY(0) rotate(0deg);
+    }
+    25% {
+      transform: translateY(-10px) rotate(-5deg);
+    }
+    50% {
+      transform: translateY(0) rotate(0deg);
+    }
+    75% {
+      transform: translateY(-10px) rotate(5deg);
+    }
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+  }
+  
+  
+  .gift-card-list img:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Button Styles */
+  .gift-card-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease;
+  }
+  
+  .gift-card-btn:hover {
+    background-color: #1c11ee;
+    transform: scale(1.05);
+
+  }
+  
+  .gift-card-btn:focus {
+    outline: none;
+  }
+  
+  /* Responsiveness */
+  @media (max-width: 768px) {
+    .gift-card-list {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .gift-card-list li {
+      width: 80%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 1.5rem;
+    }
+  
+    .gift-card-btn {
+      font-size: 0.9rem;
+    }
+  }
+  .countdown-timer {
+    margin-top: 20px;
+    font-size: 24px;
+    color: red;
+    font-weight: bold;
+  }
+  
+  
